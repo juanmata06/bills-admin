@@ -1,1 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+/**
+  * ------------------------------------------------------------------------------------------------------------------------------
+  * General styles for HTML tags and root const vars:
+  * ------------------------------------------------------------------------------------------------------------------------------
+**/
+:root {
+  --white: #fef8ec;
+  --black: #333333;
+  --gray: #e6e6e6;
+  --mainColor: #0353a4;
+  --mainDarkColor: #003049;
+  --bigTitleFontSize: 18px;
+  --smallTitleFontSize: 16px;
+  --mediumFontSize: 14px;
+  --smallFontSize: 12px;
+  --fisrtInterviewColor: #b9d6f2;
+  --secondInterviewColor: #c7f88c;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: var(--bigTitleFontSize);
+  font-weight: normal;
+}
+
+h2 {
+  font-size: var(--smallTitleFontSize);
+  font-weight: normal;
+}
+
+h2 {
+  font-size: var(--smallTitleFontSize);
+  font-weight: normal;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+/**
+  * ------------------------------------------------------------------------------------------------------------------------------
+  * My general styles:
+  * ------------------------------------------------------------------------------------------------------------------------------
+  *
+**/
+button.main-button,
+a.main-button,
+button.secondary-button,
+a.secondary-button {
+  font-weight: bold;
+  border: unset;
+  border-radius: 25px;
+  padding: 5px 15px;
+  font-size: var(--smallFontSize);
+  white-space: nowrap;
+}
+
+.main-button {
+  background-color: var(--mainColor);
+  color: var(--white);
+}
+
+.secondary-button {
+  background-color: var(--gray);
+  color: var(--black);
+}
+
+.main-button.selected-button,
+.secondary-button.selected-button {
+  box-shadow: 0 4px 10px #0000001a;
+  border: 1px solid;
+}
