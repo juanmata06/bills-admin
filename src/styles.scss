@@ -59,12 +59,17 @@ a {
   text-decoration: unset;
 }
 
+button {
+  background-color: unset;
+  border: unset;
+}
+
 table {
   box-shadow: none;
 
-  th span,
+  th,
   td {
-    font-size: var(--smallFontSize);
+    font-size: var(--smallFontSize) !important;
     text-align: center;
   }
 

@@ -53,6 +53,7 @@ export class InvoiceListComponent implements OnInit {
     'amount',
     'supply_address',
     'file',
+    'actions'
   ];
   dataSource = new MatTableDataSource<iInvoice>(this.jotason);
   appliedFilter = '';

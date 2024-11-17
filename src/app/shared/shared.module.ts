@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 //* Angular Material modules:
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 //* My imports:
 import { TranslatePipe } from './pipes/translate.pipe';
@@ -13,10 +14,12 @@ import { TranslatePipe } from './pipes/translate.pipe';
   imports: [
     CommonModule,
     MatTableModule,
+    MatTooltipModule,
     TranslatePipe,
   ],
   exports: [
     MatTableModule,
+    MatTooltipModule,
     TranslatePipe,
   ]
 })
