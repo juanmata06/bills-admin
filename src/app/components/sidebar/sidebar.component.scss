@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+  padding: 10px;
 
   i {
-    color: var(--mainColor);
+    color: white;
     font-size: var(--bigTitleFontSize);
     margin-right: 10px;
   }
@@ -14,6 +15,14 @@
     font-weight: bold;
     color: white;
   }
+
+  // @media (max-width:768px) {
+  //   width: fit-content;
+
+  //   span {
+  //     display: none;
+  //   }
+  // }
 }
 
 
@@ -43,9 +52,20 @@
       color: white;
     }
 
-    i {
-      margin-right: 15px;
+    a {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
+    // @media (max-width:768px) {
+    //   width: fit-content;
+
+    //   a span {
+    //     display: none;
+    //   }
+    // }
   }
 }
 

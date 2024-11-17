@@ -1,16 +1,20 @@
 <div class="logo">
-  <i class="fas fa-hexagon"></i>
-  <span>Dashboard v.01</span>
+  <i class="fas fa-chart-line"></i>
+  <span>Bills Admin</span>
 </div>
 <nav class="menu">
   <ul>
-    <li>
-      <i class="fas fa-chart-line"></i> 
-      {{'Invoices' | translate}}
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/invoices">
+        <i class="fas fa-chart-line"></i>
+        <span>{{ 'Invoices' | translate }}</span>
+      </a>
     </li>
-    <li class="active">
-      <i class="fas fa-users"></i> 
-      {{'Users' | translate}}
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/users">
+        <i class="fas fa-users"></i>
+        <span>{{ 'Users' | translate }}</span>
+      </a>
     </li>
   </ul>
 </nav>

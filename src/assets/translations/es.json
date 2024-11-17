@@ -1,5 +1,12 @@
 {
   "Hello": "Hola",
   "Invoices": "Facturas",
-  "Users": "Usuarios"
+  "Users": "Usuarios",
+  "Invoice name": "Nombre de la factura",
+  "Creation date": "Fecha de emisión",
+  "Amount": "Monto",
+  "Suply address": "Dirección de suministro",
+  "Invoice file": "Factura",
+  "Cargando...": "Cargando...",
+  "No hay información disponible": "No hay información disponible"
 }
