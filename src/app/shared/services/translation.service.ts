@@ -23,11 +23,16 @@ export class TranslationService {
     );
   }
 
-  setLanguage(language: string): void {
-    if (!this.validLanguages.includes(language)) { return; }
+  setLanguage(language: string): Promise<void> {
+    if (!this.validLanguages.includes(language)) { return Promise.resolve(); }
     this.currentLanguageSubject.next(language);
-    this.loadTranslations(language).subscribe();
+    return new Promise((resolve) => {
+      this.loadTranslations(language).subscribe(() => {
+        resolve();
+      });
+    });
   }
+  
 
   translate(key: string): string {    
     return this.translations[key] || key;

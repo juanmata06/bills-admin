@@ -4,8 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -15,10 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TranslatePipe
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    // TranslatePipe
   ],
   bootstrap: [AppComponent]
 })

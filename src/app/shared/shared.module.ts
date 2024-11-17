@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
-  declarations: [
-    TranslatePipe
-  ],
+  declarations: [],
   imports: [
     CommonModule,
+    TranslatePipe
   ],
   exports: [
     TranslatePipe

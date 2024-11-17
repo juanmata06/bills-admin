@@ -1,4 +1,6 @@
-<div id="page-wrapper">
+<div id="page-wrapper" *ngIf="!isLoading">
   <app-sidebar></app-sidebar>
-  <router-outlet />
+  <div class="page-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

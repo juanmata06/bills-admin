@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslationService } from './shared/services/translation.service';
 
 @Component({
@@ -6,12 +6,19 @@ import { TranslationService } from './shared/services/translation.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'bills-admin';
+  isLoading: boolean = true;
 
   constructor(
     private _translationService: TranslationService
-  ) {
-    this._translationService.setLanguage('es');
+  ) {}
+
+
+  ngOnInit(): void {
+    this._translationService.setLanguage('es').then(() => {
+      this.isLoading = false;
+    });
   }
+
 }
