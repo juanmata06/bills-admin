@@ -1,0 +1,11 @@
+#page-wrapper{
+  display: flex;
+  height: 100%;
+  app-sidebar {
+    width: 250px;
+    background-color: var(--mainDarkColor);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
