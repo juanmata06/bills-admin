@@ -1,0 +1,123 @@
+/* Variables de colores */
+:root {
+  --primary-bg: #0a192f;
+  --form-bg: #ffffff;
+  --primary-text: #000000;
+  --secondary-text: #666666;
+  --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  --input-border: #cccccc;
+  --input-focus: #007bff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-bg) url('background.jpg') no-repeat center center;
+  background-size: cover;
+  color: var(--primary-text);
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.login-container {
+  background: var(--form-bg);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--secondary-text);
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  padding: 0.5rem;
+  transition: 0.3s border-color;
+}
+
+.input-field i {
+  margin-right: 0.5rem;
+  color: var(--secondary-text);
+}
+
+.input-field input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.input-field:focus-within {
+  border-color: var(--input-focus);
+}
+
+.btn-login {
+  width: 100%;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s background-color;
+}
+
+.btn-login:hover {
+  background: darken(var(--btn-bg), 10%);
+}
+
+.register-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.register-text a {
+  color: var(--btn-bg);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}

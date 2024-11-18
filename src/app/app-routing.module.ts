@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './modules/login/login.component';
+import { MyProfileComponent } from './modules/my-profile/my-profile.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'invoices',
     loadChildren: () => import('./modules/invoices/invoices.module').then(m => m.InvoicesModule),
   },
-  // {
-  //   path: 'users',
-  //   loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule),
-  // },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
+  },
   { path: '**', redirectTo: 'invoices', pathMatch: 'full' },
 ];
 

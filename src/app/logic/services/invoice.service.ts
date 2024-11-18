@@ -12,14 +12,14 @@ export class InvoiceService {
   constructor(private _http: HttpClient) { }
 
   getInvoiceList(): Observable<iInvoice[]> {
-    const currentInvoice = localStorage.getItem('currentInvoices');
-    return currentInvoice ? of(JSON.parse(currentInvoice)) : this._http.get<iInvoice>('assets/data/invoices-list.json');
+    const currentInvoices = localStorage.getItem('currentInvoices');
+    return currentInvoices ? of(JSON.parse(currentInvoices)) : this._http.get<iInvoice>('assets/data/invoice-list.json');
   }
 
   getInvoiceById(id: string): Observable<iInvoice> {
     const currentInvoices = this.getInvoiceList();
     return currentInvoices.pipe(map((invoices: iInvoice[]) => {
-      const invoice = invoices.find((invoice: iInvoice) => invoice.id === id);
+      const invoice = invoices.find((item: iInvoice) => item.id === id);
       if (!invoice) {
         throw new Error(`Invoice with id ${id} not found`);
       }      

@@ -1,0 +1,90 @@
+<div class="component-container" *ngIf="!loading">
+  <div class="row">
+    <div class="col-12">
+      <div class="elevated-box">
+        <form [formGroup]="form" class="row">
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="name">
+              {{'Name' | translate }}*
+            </label>
+            <input 
+              type="text" 
+              formControlName="name"
+            />
+            <small *ngIf="isNotValidField('name')" class="error-message">
+              {{'Required field, 2 characters minimum' | translate }}.
+            </small>
+          </div>
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="email">
+              {{'Email' | translate }}
+            </label>
+            <input 
+              type="email" 
+              formControlName="email"
+            />
+            <small *ngIf="isNotValidField('email')" class="error-message">
+              {{'Error' | translate }}
+            </small>
+          </div>
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="address">
+              {{'Address' | translate }}
+            </label>
+            <input 
+              type="datetime" 
+              formControlName="address"
+            />
+            <small *ngIf="isNotValidField('address')" class="error-message">
+              {{'50 characters maximum' | translate }}.
+            </small>
+          </div>
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="creation_date_time">
+              {{'Creation date' | translate }}
+            </label>
+            <input 
+              type="datetime" 
+              formControlName="creation_date_time"
+            />
+            <small *ngIf="isNotValidField('creation_date_time')" class="error-message">
+              {{'Error' | translate }}.
+            </small>
+          </div>
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="password">
+              {{'Password' | translate }}
+            </label>
+            <input 
+              type="password" 
+              formControlName="password"
+            />
+            <small *ngIf="isNotValidField('password')" class="error-message">
+              {{'Error' | translate }}.
+            </small>
+          </div>
+          <div class="col-md-6 form-control-container">
+            <label class="label" for="confirmation_password">
+              {{'Confirmation password' | translate }}
+            </label>
+            <input 
+              type="password" 
+              formControlName="confirmation_password"
+            />
+            <small *ngIf="isNotValidField('confirmation_password')" class="error-message">
+              {{'Error' | translate }}.
+            </small>
+          </div>
+          <div class="col-12 d-flex gap-3">
+            <button class="main-button" (click)="validateForm()">
+              {{'Save changes' | translate}}
+            </button>
+            <a [routerLink]="'/invoices'" class="cancel-button">
+              {{'Cancel' | translate}}
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

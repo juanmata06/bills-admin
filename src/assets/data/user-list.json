@@ -1,0 +1,10 @@
+[
+  {
+    "id": "f3e61497-1a23-4b64-b6b5-795b2a3151e4",
+    "name": "Admin user",
+    "email": "admin@admincom",
+    "password": "admin",
+    "creation_date_time": "2024-11-15T09:15:00Z",
+    "address": "Avenida Perdida 46, Ciudad Ejemplo"
+  }
+]

@@ -1,7 +1,8 @@
 export interface iUser {
   id?: string;
+  name?: string;
   email?: string;
-  password?: number;
+  password?: string;
   creation_date_time?: string;
-  supply_address?: string;
+  address?: string;
 }
