@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { iInvoice } from '../../../logic/interfaces/invoice.interface';
-import { InvoiceService } from '../../../logic/services/invoice.service';
+import { iInvoice } from '../../../../../logic/interfaces/invoice.interface';
+import { InvoiceService } from '../../../../../logic/services/invoice.service';
 
 @Component({
   selector: 'app-invoice-list',

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
-import { iInvoice } from '../../../logic/interfaces/invoice.interface';
-import { InvoiceService } from '../../../logic/services/invoice.service';
-import { TranslationService } from '../../../shared/services/translation.service';
+import { iUser } from '../../../../logic/interfaces/user.interface';
+import { UserService } from '../../../../logic/services/user.service';
+import { TranslationService } from '../../../../shared/services/translation.service';
 
 @Component({
-  selector: 'app-invoice-detail',
-  templateUrl: './invoice-detail.component.html',
-  styleUrl: './invoice-detail.component.scss'
+  selector: 'app-my-profile',
+  templateUrl: './my-profile.component.html',
+  styleUrl: './my-profile.component.scss'
 })
-export class InvoiceDetailComponent implements OnInit {
+export class MyProfileComponent implements OnInit {
   /**
   * ------------------------------------------------------------------------------------------------------------------------------
   * General vars for component
@@ -19,9 +19,8 @@ export class InvoiceDetailComponent implements OnInit {
   */
   loading: boolean = false;
   id: string;
-  invoiceDetails: iInvoice;
+  userDetails: iUser;
   form: FormGroup;
-  formFile: File | undefined;
   private _unsubscribeAll: ReplaySubject<boolean> = new ReplaySubject(1);
 
   /**
@@ -33,20 +32,20 @@ export class InvoiceDetailComponent implements OnInit {
     private _route: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _router: Router,
-    private _invoiceService: InvoiceService,
+    private _userService: UserService,
     private _translationService: TranslationService
   ) {
     this.loading = true;
   }
 
   ngOnInit(): void {
-    this.id = this._route.snapshot.params["id"];
+    // this.id = this._route.snapshot.params["id"];
 
-    if ((!this.id) || this.id == '' || this._router.url.includes('invoices/create')) {
+    // if ((!this.id) || this.id == '' || this._router.url.includes('invoices/create')) {
       this.createForm();
-      return;
-    }
-    this.getInvoiceDetails();
+    //   return;
+    // }
+    // this.getInvoiceDetails();
   }
 
   ngOnDestroy() {
@@ -61,38 +60,39 @@ export class InvoiceDetailComponent implements OnInit {
   */
   private createForm(): void {
     this.form = this._formBuilder.group({
-      name: [this.invoiceDetails?.name || '', [Validators.required, Validators.minLength(2)]],
-      creation_date_time: [this.invoiceDetails?.creation_date_time || ''],
-      amount: [this.invoiceDetails?.amount || ''],
-      supply_address: [this.invoiceDetails?.supply_address || '', [Validators.maxLength(50)]],
-      file: [null],
+      name: [this.userDetails?.name || '', [Validators.required, Validators.minLength(2)]],
+      email: [this.userDetails?.email, [Validators.required]],
+      address: [this.userDetails?.address || '', [Validators.maxLength(50)]],
+      creation_date_time: [this.userDetails?.creation_date_time || ''],
+      password: ['', [Validators.minLength(2)]],
+      confirmation_password: ['', [Validators.minLength(2)]],
     });
     this.loading = false;
   }
 
   private getInvoiceDetails(): void {
-    this._invoiceService.getInvoiceById(this.id).subscribe({
-      next: (response: iInvoice) => {
-        this.invoiceDetails = response;
-        if (this.invoiceDetails.file) { this.invoiceDetails['file'] = this.invoiceDetails.file.split("\\").pop() }
-        this.createForm();
-      },
-      error: (badRequest) => this.goBackToList()
-    });
+    // this._invoiceService.getInvoiceById(this.id).subscribe({
+    //   next: (response: iInvoice) => {
+    //     this.invoiceDetails = response;
+    //     if (this.invoiceDetails.file) { this.invoiceDetails['file'] = this.invoiceDetails.file.split("\\").pop() }
+    //     this.createForm();
+    //   },
+    //   error: (badRequest) => this.goBackToList()
+    // });
   }
 
   private saveOrEditForm(): void {
-    if (this.id) {
-      this._invoiceService.updateInvoice({ ...this.form.value, id: this.id }).subscribe({
-        next: (response) => window.alert(this._translationService.translate('Invoice updated')),
-        complete: () => this.goBackToList()
-      });
-    } else {
-      this._invoiceService.postInvoice(this.form.value).subscribe({
-        next: (response) => window.alert(this._translationService.translate('Invoice created')),
-        complete: () => this.goBackToList()
-      });
-    }
+    // if (this.id) {
+    //   this._invoiceService.updateInvoice({ ...this.form.value, id: this.id }).subscribe({
+    //     next: (response) => window.alert(this._translationService.translate('Invoice updated')),
+    //     complete: () => this.goBackToList()
+    //   });
+    // } else {
+    //   this._invoiceService.postInvoice(this.form.value).subscribe({
+    //     next: (response) => window.alert(this._translationService.translate('Invoice created')),
+    //     complete: () => this.goBackToList()
+    //   });
+    // }
   }
 
   /**
@@ -106,25 +106,6 @@ export class InvoiceDetailComponent implements OnInit {
   * PUBLIC METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
-  public onFileChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input?.files && input.files.length > 0) {
-      this.formFile = input.files[0];
-    } else {
-      this.formFile = undefined;
-    }
-  }
-
-  public getFormFile(): void {
-    const url = URL.createObjectURL(this.formFile!);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = this.formFile!.name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
 
   public goBackToList(): void {
     this._router.navigate(['/']);

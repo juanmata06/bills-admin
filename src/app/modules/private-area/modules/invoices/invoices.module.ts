@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { invoicesRoutes } from './invoices.routing';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @NgModule({
   declarations: [

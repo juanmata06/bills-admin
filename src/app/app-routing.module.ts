@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { LoginGuard } from './shared/guards/login.guard';
 import { LoginComponent } from './modules/login/login.component';
-import { MyProfileComponent } from './modules/my-profile/my-profile.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
-    path: 'invoices',
-    loadChildren: () => import('./modules/invoices/invoices.module').then(m => m.InvoicesModule),
+    path: 'private-area',
+    loadChildren: () => import('./modules/private-area/private-area.module').then(m => m.PrivateAreaModule),
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'my-profile',
-    component: MyProfileComponent,
-  },
-  { path: '**', redirectTo: 'invoices', pathMatch: 'full' },
+  { path: '**', redirectTo: 'private-area', pathMatch: 'full' },
 ];
 
 @NgModule({
