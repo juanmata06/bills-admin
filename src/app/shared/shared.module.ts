@@ -9,21 +9,27 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 //* My imports:
 import { TranslatePipe } from './pipes/translate.pipe';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SidebarComponent
+  ],
   imports: [
+    RouterModule,
     CommonModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatTooltipModule,
     TranslatePipe,
-    ReactiveFormsModule
   ],
   exports: [
+    ReactiveFormsModule,
     MatTableModule,
     MatTooltipModule,
     TranslatePipe,
-    ReactiveFormsModule
+    SidebarComponent
   ]
 })
 export class SharedModule { }

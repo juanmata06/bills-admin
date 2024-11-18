@@ -1,24 +1,20 @@
 //* Angular modules:
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 //* My imports:
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { TranslatePipe } from './shared/pipes/translate.pipe';
 import { LoginComponent } from './modules/login/login.component';
-import { PrivateAreaComponent } from './modules/private-area/private-area.component';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     LoginComponent,
-    PrivateAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +25,6 @@ import { PrivateAreaComponent } from './modules/private-area/private-area.compon
   ],
   providers: [
     provideAnimationsAsync(),
-    // TranslatePipe
   ],
   bootstrap: [AppComponent]
 })
