@@ -1,12 +1,24 @@
 {
   "Hello": "Hola",
   "Invoices": "Facturas",
-  "Users": "Usuarios",
+  "My profile": "Mi perfil",
   "Invoice name": "Nombre de la factura",
   "Creation date": "Fecha de emisión",
-  "Amount": "Monto",
+  "Amount": "Importe",
   "Suply address": "Dirección de suministro",
   "Invoice file": "Factura",
   "Cargando...": "Cargando...",
-  "No hay información disponible": "No hay información disponible"
+  "No hay información disponible": "No hay información disponible",
+  "Required field, 2 characters minimum": "Campo requerido, mínimo de 2 caracteres",
+  "50 characters maximum": "Máximo de 50 caracteres",
+  "Add file": "Agrega un archivo",
+  "Error": "Error",
+  "Supply address": "Dirección de suministro",
+  "Required field, attach an invoice": "Campo requerido, adjunta una factura",
+  "Create invoice": "Crear factura",
+  "Save changes": "Guardar cambios",
+  "Cancel": "Cancelar",
+  "Edit": "Editar",
+  "Invoice updated": "Factura actualizada",
+  "Invoice created": "Factura creada"
 }

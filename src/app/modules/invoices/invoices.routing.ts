@@ -5,6 +5,7 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 
 export const invoicesRoutes: Route[] = [
   { path: '', component: InvoiceListComponent },
-  { path: ':uuid', component: InvoiceDetailComponent },
+  { path: 'create', component: InvoiceDetailComponent },
+  { path: ':id', component: InvoiceDetailComponent },
   { path: '**', redirectTo: '' },
 ];

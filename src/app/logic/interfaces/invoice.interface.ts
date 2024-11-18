@@ -4,5 +4,5 @@ export interface iInvoice {
   creation_date_time?: string;
   amount?: number;
   supply_address?: string;
-  file?: File;
+  file?: any;
 }

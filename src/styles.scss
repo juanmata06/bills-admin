@@ -13,8 +13,6 @@
   --smallTitleFontSize: 20px;
   --mediumFontSize: 14px;
   --smallFontSize: 12px;
-  --fisrtInterviewColor: #b9d6f2;
-  --secondInterviewColor: #c7f88c;
 }
 
 html,
@@ -124,32 +122,46 @@ div.component-container {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-button.main-button,
-a.main-button,
-button.secondary-button,
-a.secondary-button {
+a.link:hover{
+  font-weight: bold;
+  border-bottom: 1px solid var(--mainColor);
+}
+
+.main-button,
+.secondary-button,
+.cancel-button {
   font-weight: bold;
   border: unset;
-  border-radius: 25px;
   padding: 5px 15px;
   font-size: var(--smallFontSize);
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .main-button {
   background-color: var(--mainColor);
   color: var(--white);
+  border-radius: 25px;
 }
 
 .secondary-button {
   background-color: var(--gray);
   color: var(--black);
+  border-radius: 5px;
 }
 
-.main-button.selected-button,
-.secondary-button.selected-button {
-  box-shadow: 0 4px 10px #0000001a;
-  border: 1px solid;
+.cancel-button {
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 25px;
+}
+
+.main-button,
+.secondary-button {
+  &:hover{
+    box-shadow: 0 4px 10px #0000001a;
+    // border: 1px solid var(--gray);
+  }
 }
 
 .ellipsis-text-style {
@@ -157,4 +169,57 @@ a.secondary-button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.form-control-container {
+  // @media (max-width:768px) {
+  margin-bottom: 20px;
+  // }
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  label.label {
+    font-size: var(--mediumFontSize);
+    font-weight: bold;
+    padding-left: 5px;
+  }
+
+  input,
+  select {
+    height: 30px;
+  }
+
+  input,
+  select,
+  textarea,
+  div.files-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: 2px solid var(--gray);
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: var(--smallFontSize);
+  }
+
+  div.files-container {
+    overflow: hidden;
+    div.file-box,
+    a.file-box {
+      cursor: pointer;
+      max-width: 100px;
+      display: flex;
+      gap: 5px;
+      background-color: var(--gray);
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+
+  small.error-message {
+    padding-left: 5px;
+    color: red;
+  }
 }

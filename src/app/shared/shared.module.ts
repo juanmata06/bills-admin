@@ -1,6 +1,7 @@
 //* Angular modules:
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //* Angular Material modules:
 import { MatTableModule } from '@angular/material/table';
@@ -16,11 +17,13 @@ import { TranslatePipe } from './pipes/translate.pipe';
     MatTableModule,
     MatTooltipModule,
     TranslatePipe,
+    ReactiveFormsModule
   ],
   exports: [
     MatTableModule,
     MatTooltipModule,
     TranslatePipe,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
