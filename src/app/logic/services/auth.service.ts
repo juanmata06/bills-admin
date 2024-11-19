@@ -16,7 +16,7 @@ export class AuthService {
   ) { }
 
   set loggedUser(value: iUser) {
-    localStorage.setItem(`currentUser`, JSON.stringify(value));
+    localStorage.setItem('currentUser', JSON.stringify({ id: value.id }));
     this._loggedUser.next(value);
     this._router.navigate(['/']);
   }
@@ -45,8 +45,29 @@ export class AuthService {
     );
   }
 
+  public getCurrentUserData(): Observable<void> {
+    const currentUserId = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')!)?.id : null;
+
+    if (!currentUserId) {
+      this.logout();
+      return of();
+    }
+
+    return this.getUsersList().pipe(
+      map((users: iUser[] | null) => {
+        const user = users?.find((u) => u.id === currentUserId);
+        if (user) {
+          this.loggedUser = user;
+        } else {
+          this.logout();
+        }
+      })
+    );
+  }
+
   public logout(): void {
     localStorage.removeItem('currentUser');
-    window.location.reload();
+    this._loggedUser.next(undefined!);
+    this._router.navigate(['/login']);
   }
 }

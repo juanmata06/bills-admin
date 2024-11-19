@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslationService } from './shared/services/translation.service';
+import { AuthService } from './logic/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +22,23 @@ export class AppComponent implements OnInit {
   * -----------------------------------------------------------------------------------------------------------------------------
   */
   constructor(
-    private _translationService: TranslationService
+    private _translationService: TranslationService,
+    private _authService: AuthService
   ) { }
 
 
   ngOnInit(): void {
-    this._translationService.setLanguage('es').then(() => {
-      this.isLoading = false;
+    this._authService.getCurrentUserData().subscribe({
+      next: (response) => {        
+        this._translationService.setLanguage('es').then(() => {
+          this.isLoading = false;
+        });
+      },
+      error: (err) => {
+        this._translationService.setLanguage('es').then(() => {
+          this.isLoading = false;
+        });
+      },
     });
   }
   /**
