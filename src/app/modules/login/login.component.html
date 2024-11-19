@@ -1,27 +1,39 @@
 <div class="background">
   <div class="elevated-box login-container">
-    <h1>Ingresar</h1>
-    <form>
+    <h1>{{'Bills admin' | translate}}</h1>
+    <form [formGroup]="form">
       <div class="form-control-container">
         <label class="label" for="usuario">
-          Usuario
+          {{'Email' | translate}}
         </label>
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="email" id="usuario">
+          <input 
+            type="email"
+            formControlName="email"
+          />
         </div>
+        <small *ngIf="isNotValidField('email')" class="error-message">
+          {{'Email required' | translate }}.
+        </small>
       </div>
       <div class="form-control-container">
-        <label class="label" for="contrasena">
-          Contraseña
+        <label class="label">
+          {{'Password' | translate}}
         </label>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" id="contrasena">
+          <input 
+            type="password"
+            formControlName="password"
+            />
         </div>
+        <small *ngIf="isNotValidField('password')" class="error-message">
+          {{'Password required' | translate }}.
+        </small>
       </div>
-      <button type="submit" class="main-button">
-        Login
+      <button class="main-button" (click)="validateForm()">
+        {{'Login' | translate}}
       </button>
     </form>
   </div>

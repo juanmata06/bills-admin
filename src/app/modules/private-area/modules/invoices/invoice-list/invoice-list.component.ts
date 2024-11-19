@@ -31,7 +31,6 @@ export class InvoiceListComponent implements OnInit {
     'actions'
   ];
   dataSource = new MatTableDataSource<iInvoice>([]);
-  appliedFilter = '';
 
   /**
    * -----------------------------------------------------------------------------------------------------------------------------
@@ -54,23 +53,12 @@ export class InvoiceListComponent implements OnInit {
   */
   public getInvoiceList(): void {
     this.tableDataLoading = true;
-    localStorage.setItem(`currentAppliedFilter`, this.appliedFilter);
     this.dataSource = new MatTableDataSource<iInvoice>([]);
     this._invoiceService.getInvoiceList().subscribe({
       next: (response: iInvoice[]) => {
         if (!response)
           return
-        this.dataSource = new MatTableDataSource<iInvoice>(
-          response
-          // .filter((invoice: iInvoice) => {
-          //   if (this.appliedFilter === 'first') {
-          //     return invoice.is_first_invoice === true;
-          //   } else if (this.appliedFilter === 'second') {
-          //     return invoice.is_first_invoice === false;
-          //   }
-          //   return true;
-          // })
-        );
+        this.dataSource = new MatTableDataSource<iInvoice>(response);
         this.tableDataLoading = false;
         // localStorage.setItem(`currentInvoices`, JSON.stringify(response));
       }

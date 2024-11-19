@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../logic/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,7 +19,9 @@ export class SidebarComponent implements OnInit {
    * LYFECYCLE METHODS
    * -----------------------------------------------------------------------------------------------------------------------------
    */
-  constructor() {
+  constructor(
+    private _authService: AuthService
+  ) {
     this.loading = true;
   }
 
@@ -41,6 +44,9 @@ export class SidebarComponent implements OnInit {
   * PUBLIC METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
+ public logOut(): void{
+  this._authService.logout();
+ }
 
   /**
   * ------------------------------------------------------------------------------------------------------------------------------

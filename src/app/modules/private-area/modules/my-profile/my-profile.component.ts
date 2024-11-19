@@ -61,7 +61,7 @@ export class MyProfileComponent implements OnInit {
   private createForm(): void {
     this.form = this._formBuilder.group({
       name: [this.userDetails?.name || '', [Validators.required, Validators.minLength(2)]],
-      email: [this.userDetails?.email, [Validators.required]],
+      email: [this.userDetails?.email, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       address: [this.userDetails?.address || '', [Validators.maxLength(50)]],
       creation_date_time: [this.userDetails?.creation_date_time || ''],
       password: ['', [Validators.minLength(2)]],

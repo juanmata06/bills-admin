@@ -11,12 +11,12 @@ export class InvoiceService {
 
   constructor(private _http: HttpClient) { }
 
-  getInvoiceList(): Observable<iInvoice[]> {
+  public getInvoiceList(): Observable<iInvoice[]> {
     const currentInvoices = localStorage.getItem('currentInvoices');
     return currentInvoices ? of(JSON.parse(currentInvoices)) : this._http.get<iInvoice>('assets/data/invoice-list.json');
   }
 
-  getInvoiceById(id: string): Observable<iInvoice> {
+  public getInvoiceById(id: string): Observable<iInvoice> {
     const currentInvoices = this.getInvoiceList();
     return currentInvoices.pipe(map((invoices: iInvoice[]) => {
       const invoice = invoices.find((item: iInvoice) => item.id === id);
@@ -27,7 +27,7 @@ export class InvoiceService {
     }));
   }
 
-  postInvoice(data: iInvoice): Observable<iInvoice> {
+  public postInvoice(data: iInvoice): Observable<iInvoice> {
     data['id'] = uuidv4()
     return this.getInvoiceList().pipe(
       map((invoices: iInvoice[]) => {
@@ -41,7 +41,7 @@ export class InvoiceService {
     );
   }
 
-  updateInvoice(data: iInvoice): Observable<iInvoice> {
+  public updateInvoice(data: iInvoice): Observable<iInvoice> {
     return this.getInvoiceList().pipe(
       map((invoices: iInvoice[]) => {
         const index = invoices.findIndex((item: iInvoice) => item.id === data.id);        
