@@ -3,6 +3,6 @@ export interface iUser {
   name?: string;
   email?: string;
   password?: string;
-  creation_date_time?: string;
+  creation_date?: string;
   address?: string;
 }

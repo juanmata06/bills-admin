@@ -40,14 +40,14 @@
             </small>
           </div>
           <div class="col-md-6 form-control-container">
-            <label class="label" for="creation_date_time">
+            <label class="label" for="creation_date">
               {{'Creation date' | translate }}
             </label>
             <input 
-              type="datetime" 
-              formControlName="creation_date_time"
+              type="date" 
+              formControlName="creation_date"
             />
-            <small *ngIf="isNotValidField('creation_date_time')" class="error-message">
+            <small *ngIf="isNotValidField('creation_date')" class="error-message">
               {{'Error' | translate }}.
             </small>
           </div>
@@ -59,8 +59,8 @@
               type="password" 
               formControlName="password"
             />
-            <small *ngIf="isNotValidField('password')" class="error-message">
-              {{'Error' | translate }}.
+            <small *ngIf="notValidPassword" class="error-message">
+              {{'Minimum 8 alphanumeric characters. The two passwords must match.' | translate }}.
             </small>
           </div>
           <div class="col-md-6 form-control-container">
@@ -71,11 +71,11 @@
               type="password" 
               formControlName="confirmation_password"
             />
-            <small *ngIf="isNotValidField('confirmation_password')" class="error-message">
-              {{'Error' | translate }}.
+            <small *ngIf="notValidConfirmationPassword" class="error-message">
+              {{'Minimum 8 alphanumeric characters. The two passwords must match.' | translate }}.
             </small>
           </div>
-          <div class="col-12 d-flex gap-3">
+          <div class="col-12 d-flex justify-content-end gap-3">
             <button class="main-button" (click)="validateForm()">
               {{'Save changes' | translate}}
             </button>

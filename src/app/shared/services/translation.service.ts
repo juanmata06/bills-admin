@@ -26,6 +26,7 @@ export class TranslationService {
   setLanguage(language: string): Promise<void> {
     if (!this.validLanguages.includes(language)) { return Promise.resolve(); }
     this.currentLanguageSubject.next(language);
+    localStorage.setItem('currentLanguage', language);
     return new Promise((resolve) => {
       this.loadTranslations(language).subscribe(() => {
         resolve();

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ReplaySubject, takeUntil } from 'rxjs';
 import { AuthService } from '../../../logic/services/auth.service';
+import { iUser } from '../../../logic/interfaces/user.interface';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,6 +15,8 @@ export class SidebarComponent implements OnInit {
   * ------------------------------------------------------------------------------------------------------------------------------
   */
   loading: boolean = false;
+  currentUserDetails: iUser;
+  private _unsubscribeAll: ReplaySubject<boolean> = new ReplaySubject(1);
 
   /**
    * -----------------------------------------------------------------------------------------------------------------------------
@@ -20,18 +24,33 @@ export class SidebarComponent implements OnInit {
    * -----------------------------------------------------------------------------------------------------------------------------
    */
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
   ) {
     this.loading = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscribeToCurrentUser();
+  }
+
+  ngOnDestroy() {
+    this._unsubscribeAll.next(true);
+    this._unsubscribeAll.complete();
+  }
 
   /**
   * ------------------------------------------------------------------------------------------------------------------------------
   * PRIVATE METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
+  private subscribeToCurrentUser(): void {
+    this._authService.loggedUser$.pipe(takeUntil(this._unsubscribeAll)).subscribe({
+      next: (response: iUser) => {
+        this.currentUserDetails = response;
+      },
+      error: (badRequest) => this.logOut()
+    });
+  }
 
   /**
   * ------------------------------------------------------------------------------------------------------------------------------
@@ -44,9 +63,9 @@ export class SidebarComponent implements OnInit {
   * PUBLIC METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
- public logOut(): void{
-  this._authService.logout();
- }
+  public logOut(): void {
+    this._authService.logOut();
+  }
 
   /**
   * ------------------------------------------------------------------------------------------------------------------------------

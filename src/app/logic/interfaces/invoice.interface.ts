@@ -1,7 +1,7 @@
 export interface iInvoice {
   id?: string;
   name?: string;
-  creation_date_time?: string;
+  creation_date?: string;
   amount?: number;
   supply_address?: string;
   file?: any;

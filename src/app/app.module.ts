@@ -19,9 +19,9 @@ import { TranslatePipe } from './shared/pipes/translate.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     TranslatePipe,
-    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),

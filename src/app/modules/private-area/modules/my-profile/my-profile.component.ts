@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, takeUntil } from 'rxjs';
 import { iUser } from '../../../../logic/interfaces/user.interface';
 import { UserService } from '../../../../logic/services/user.service';
 import { TranslationService } from '../../../../shared/services/translation.service';
+import { AuthService } from '../../../../logic/services/auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -18,8 +19,7 @@ export class MyProfileComponent implements OnInit {
   * ------------------------------------------------------------------------------------------------------------------------------
   */
   loading: boolean = false;
-  id: string;
-  userDetails: iUser;
+  currentUserDetails: iUser;
   form: FormGroup;
   private _unsubscribeAll: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -33,19 +33,14 @@ export class MyProfileComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _userService: UserService,
-    private _translationService: TranslationService
+    private _translationService: TranslationService,
+    private _authService: AuthService
   ) {
     this.loading = true;
   }
 
   ngOnInit(): void {
-    // this.id = this._route.snapshot.params["id"];
-
-    // if ((!this.id) || this.id == '' || this._router.url.includes('invoices/create')) {
-      this.createForm();
-    //   return;
-    // }
-    // this.getInvoiceDetails();
+    this.subscribeToCurrentUser();
   }
 
   ngOnDestroy() {
@@ -58,41 +53,47 @@ export class MyProfileComponent implements OnInit {
   * PRIVATE METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
+  private subscribeToCurrentUser(): void {
+    this._authService.loggedUser$.pipe(takeUntil(this._unsubscribeAll)).subscribe({
+      next: (response: iUser) => {
+        this.currentUserDetails = response;
+        this.createForm();
+      },
+      error: (badRequest) => this._authService.logOut()
+    });
+    this.createForm();
+  }
+
   private createForm(): void {
     this.form = this._formBuilder.group({
-      name: [this.userDetails?.name || '', [Validators.required, Validators.minLength(2)]],
-      email: [this.userDetails?.email, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      address: [this.userDetails?.address || '', [Validators.maxLength(50)]],
-      creation_date_time: [this.userDetails?.creation_date_time || ''],
-      password: ['', [Validators.minLength(2)]],
-      confirmation_password: ['', [Validators.minLength(2)]],
+      name: [this.currentUserDetails?.name || '', [Validators.required, Validators.minLength(2)]],
+      email: [{ value: this.currentUserDetails?.email || '', disabled: true }, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      address: [this.currentUserDetails?.address || '', [Validators.maxLength(50)]],
+      creation_date: [{ value: this.currentUserDetails?.creation_date || '', disabled: true }],
+      password: ['', [Validators.minLength(5)]],
+      confirmation_password: ['', [Validators.minLength(5)]],
     });
     this.loading = false;
   }
 
-  private getInvoiceDetails(): void {
-    // this._invoiceService.getInvoiceById(this.id).subscribe({
-    //   next: (response: iInvoice) => {
-    //     this.invoiceDetails = response;
-    //     if (this.invoiceDetails.file) { this.invoiceDetails['file'] = this.invoiceDetails.file.split("\\").pop() }
-    //     this.createForm();
-    //   },
-    //   error: (badRequest) => this.goBackToList()
-    // });
-  }
-
   private saveOrEditForm(): void {
-    // if (this.id) {
-    //   this._invoiceService.updateInvoice({ ...this.form.value, id: this.id }).subscribe({
-    //     next: (response) => window.alert(this._translationService.translate('Invoice updated')),
-    //     complete: () => this.goBackToList()
-    //   });
-    // } else {
-    //   this._invoiceService.postInvoice(this.form.value).subscribe({
-    //     next: (response) => window.alert(this._translationService.translate('Invoice created')),
-    //     complete: () => this.goBackToList()
-    //   });
-    // }
+    const data = this.form.value;
+
+    delete data['confirmation_password'];
+    if (!data['password']) { data['password'] = this.currentUserDetails.password; }
+
+    this._userService.updateUser({
+      ...data,
+      id: this.currentUserDetails.id,
+      email: this.currentUserDetails.email,
+      creation_date: this.currentUserDetails.creation_date
+    }).subscribe({
+      next: (response) => {
+        window.alert(this._translationService.translate('Profile data updated'));
+        this._authService.getCurrentUserData().subscribe();
+      },
+      error: () => window.alert(this._translationService.translate('An error has occurred updating the profile data'))
+    });
   }
 
   /**
@@ -116,8 +117,19 @@ export class MyProfileComponent implements OnInit {
   * PUBLIC VALIDATION AND INTERNAL PROCESS METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
+  get notValidPassword() {
+    return this.form.controls['password'].touched && (!this.form.controls['password'].valid || !this.comparePasswords());
+  }
+
+  get notValidConfirmationPassword() {
+    return (this.form.controls['password'].touched || this.form.controls['confirmation_password'].touched) && (!this.form.controls['confirmation_password'].valid || !this.comparePasswords());
+  }
+
+  public comparePasswords(): boolean {
+    return this.form.controls['password'].value == this.form.controls['confirmation_password'].value;
+  }
   public validateForm(): void {
-    if (this.form.invalid) {
+    if (this.form.invalid || !this.comparePasswords()) {
       this.form.markAllAsTouched();
       return;
     }

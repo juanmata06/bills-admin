@@ -30,12 +30,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._authService.getCurrentUserData().subscribe({
       next: (response) => {        
-        this._translationService.setLanguage('es').then(() => {
+        this._translationService.setLanguage(localStorage.getItem('currentLanguage') || 'es').then(() => {
           this.isLoading = false;
         });
       },
       error: (err) => {
-        this._translationService.setLanguage('es').then(() => {
+        this._authService.logOut();
+        this._translationService.setLanguage(localStorage.getItem('currentLanguage') || 'es').then(() => {
           this.isLoading = false;
         });
       },

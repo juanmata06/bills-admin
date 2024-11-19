@@ -62,7 +62,7 @@ export class InvoiceDetailComponent implements OnInit {
   private createForm(): void {
     this.form = this._formBuilder.group({
       name: [this.invoiceDetails?.name || '', [Validators.required, Validators.minLength(2)]],
-      creation_date_time: [this.invoiceDetails?.creation_date_time || ''],
+      creation_date: [this.invoiceDetails?.creation_date || new Date().toISOString().split('T')[0]],
       amount: [this.invoiceDetails?.amount || ''],
       supply_address: [this.invoiceDetails?.supply_address || '', [Validators.maxLength(50)]],
       file: [null],
@@ -83,7 +83,7 @@ export class InvoiceDetailComponent implements OnInit {
 
   private saveOrEditForm(): void {
     if (this.id) {
-      this._invoiceService.updateInvoice({ ...this.form.value, id: this.id }).subscribe({
+      this._invoiceService.updateInvoice({ ...this.form.value, id: this.id,  }).subscribe({
         next: (response) => window.alert(this._translationService.translate('Invoice updated')),
         complete: () => this.goBackToList()
       });

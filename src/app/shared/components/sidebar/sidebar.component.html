@@ -19,9 +19,12 @@
   </ul>
 </nav>
 <div class="user-info">
-  <img src="user-placeholder.jpg" alt="User">
-  <span>Evano</span>
-  <p>Project Manager</p>
+  <span *ngIf="currentUserDetails.name">
+    {{'Hi'}}, {{currentUserDetails.name}}
+  </span>
+  <p>
+    {{currentUserDetails.email}}
+  </p>
   <button class="main-button" (click)="logOut()">
     {{'Logout' | translate}}
   </button>

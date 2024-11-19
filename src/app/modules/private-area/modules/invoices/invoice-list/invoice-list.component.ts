@@ -15,6 +15,11 @@ export class InvoiceListComponent implements OnInit {
   * ------------------------------------------------------------------------------------------------------------------------------
   */
   loading: boolean = false;
+  invoicesStats = {
+    totalInvoices: 0,
+    totalAmount: 0,
+    todayInvoices: 0
+  };
 
   /**
   * ------------------------------------------------------------------------------------------------------------------------------
@@ -24,7 +29,7 @@ export class InvoiceListComponent implements OnInit {
   tableDataLoading: boolean = false;
   displayedColumns: string[] = [
     'name',
-    'creation_date_time',
+    'creation_date',
     'amount',
     'supply_address',
     'file',
@@ -58,9 +63,15 @@ export class InvoiceListComponent implements OnInit {
       next: (response: iInvoice[]) => {
         if (!response)
           return
+        this.invoicesStats = {
+          totalInvoices: response.length || 0,
+          totalAmount: response.reduce((sum, invoice: iInvoice) => sum + (invoice.amount || 0), 0),
+          todayInvoices: response.filter(
+            (invoice: iInvoice) => invoice.creation_date === new Date().toISOString().split("T")[0]
+          )?.length || 0
+        };
         this.dataSource = new MatTableDataSource<iInvoice>(response);
         this.tableDataLoading = false;
-        // localStorage.setItem(`currentInvoices`, JSON.stringify(response));
       }
     });
   }
