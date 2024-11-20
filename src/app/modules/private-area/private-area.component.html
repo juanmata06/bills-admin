@@ -3,8 +3,9 @@
   <div class="page-container">
     <div class="col-12 d-flex justify-content-end">
       <select class="languages-select" [(ngModel)]="language" (change)="changeLanguage($event)">
-        <option value="es">Español</option>
         <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="ca">Català</option>
       </select>
     </div>
     <router-outlet></router-outlet>

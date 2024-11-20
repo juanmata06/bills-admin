@@ -124,7 +124,7 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell text-start p-2" colspan="11">
-              <span>{{(tableDataLoading ? 'Cargando...' : 'No hay información disponible') | translate}}</span>
+              <span>{{(tableDataLoading ? 'Loading...' : 'No information available') | translate}}</span>
             </td>
           </tr>
         </table>

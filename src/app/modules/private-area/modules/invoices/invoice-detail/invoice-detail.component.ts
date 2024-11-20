@@ -138,6 +138,7 @@ export class InvoiceDetailComponent implements OnInit {
   public validateForm(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      window.alert(this._translationService.translate('There are fields with errors that you must correct.'));
       return;
     }
     this.saveOrEditForm();

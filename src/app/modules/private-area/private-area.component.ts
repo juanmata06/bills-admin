@@ -13,7 +13,7 @@ export class PrivateAreaComponent implements OnInit {
   * ------------------------------------------------------------------------------------------------------------------------------
   */
   loading: boolean = false;
-  language: string = 'es';
+  language: string = 'en';
 
   /**
    * -----------------------------------------------------------------------------------------------------------------------------
@@ -28,7 +28,7 @@ export class PrivateAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.language = this._translationService.getCurrentLanguageValue() || 'es';
+    this.language = this._translationService.getCurrentLanguageValue() || 'en';
   }
 
   /**
@@ -48,10 +48,10 @@ export class PrivateAreaComponent implements OnInit {
   * PUBLIC METHODS
   * ------------------------------------------------------------------------------------------------------------------------------
   */
-  changeLanguage(event: any) {    
+  changeLanguage(event: any) {
     this.language = event.target['value'];
-    this._translationService.setLanguage(this.language).then(() => {});
-    window.location.reload();
+    this._translationService.setLanguage(this.language).then(() => { });
+    location.reload();
   }
   /**
   * ------------------------------------------------------------------------------------------------------------------------------

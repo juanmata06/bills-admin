@@ -131,6 +131,7 @@ export class MyProfileComponent implements OnInit {
   public validateForm(): void {
     if (this.form.invalid || !this.comparePasswords()) {
       this.form.markAllAsTouched();
+      window.alert(this._translationService.translate('There are fields with errors that you must correct.'));
       return;
     }
     this.saveOrEditForm();

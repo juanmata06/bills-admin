@@ -60,25 +60,11 @@ export class LoginComponent implements OnInit {
   }
 
   private saveOrEditForm(): void {
-    console.log(this.form.value);
     this._authService.login(this.form.value).subscribe({
-      next: (response: any) => {
-        console.log(response);
-        
+      next: (response: any) => {        
       },
-      error: (badRequest) => window.alert(this._translationService.translate("Error, the user or password doesn't exist")),
+      error: (badRequest) => window.alert(this._translationService.translate("Error, the email or password doesn't exist")),
     });
-    // if (this.id) {
-    //   this._invoiceService.updateInvoice({ ...this.form.value, id: this.id }).subscribe({
-    //     next: (response) => window.alert(this._translationService.translate('Invoice updated')),
-    //     complete: () => this.goBackToList()
-    //   });
-    // } else {
-    //   this._invoiceService.postInvoice(this.form.value).subscribe({
-    //     next: (response) => window.alert(this._translationService.translate('Invoice created')),
-    //     complete: () => this.goBackToList()
-    //   });
-    // }
   }
 
   /**
@@ -105,6 +91,7 @@ export class LoginComponent implements OnInit {
   public validateForm(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      window.alert(this._translationService.translate('There are fields with errors that you must correct.'));
       return;
     }
     this.saveOrEditForm();

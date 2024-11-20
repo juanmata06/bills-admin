@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class TranslationService {
-  private _defaultLanguage: string = 'es';
-  private validLanguages: string[] = ['es', 'en'];
+  private _defaultLanguage: string = 'en';
+  private validLanguages: string[] = ['en', 'es', 'ca'];
   private currentLanguageSubject: BehaviorSubject<string> = new BehaviorSubject<string>(this._defaultLanguage);
   private translations: any = {};
 
