@@ -6,7 +6,7 @@ This repository hosts a web application built with Angular v18, developed as par
 
 The application is built entirely with Angular. Data management is implemented using JSON files to provide preloaded lists of translations, users, and invoices. Additionally, local storage is utilized to handle and persist any edited data.
 
-The development leveraged libraries such as [Angular Material](https://material.angular.io/), [Bootstrap](https://getbootstrap.com/), and [RxJS](https://rxjs.dev/). It also incorporated features like pipes, guards, SCSS, and object-oriented programming principles, utilizing interfaces to ensure robust and maintainable code.
+The development leveraged libraries such as [Angular Material](https://material.angular.io/), [Bootstrap](https://getbootstrap.com/), [Font Awesome](fontawesome.com), and [RxJS](https://rxjs.dev/). It also incorporated features like pipes, guards, SCSS, and object-oriented programming principles, using interfaces to ensure robust and maintainable code.
 
 ## Development server
 

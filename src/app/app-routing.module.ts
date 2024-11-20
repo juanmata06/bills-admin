@@ -1,5 +1,8 @@
+//* Angular modules:
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+//* My imports:
 import { AuthGuard } from './shared/guards/auth.guard';
 import { LoginGuard } from './shared/guards/login.guard';
 import { LoginComponent } from './modules/login/login.component';
