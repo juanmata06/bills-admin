@@ -20,7 +20,7 @@
 </nav>
 <div class="user-info">
   <span *ngIf="currentUserDetails.name">
-    {{'Hi'}}, {{currentUserDetails.name}}
+    {{'Hi' | translate}}, {{currentUserDetails.name}}
   </span>
   <p>
     {{currentUserDetails.email}}
