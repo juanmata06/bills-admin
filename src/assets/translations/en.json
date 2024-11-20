@@ -36,5 +36,7 @@
   "Profile data updated": "",
   "An error has occurred updating the profile data": "",
   "Minimum 8 alphanumeric characters. The two passwords must match": "",
-  "There are fields with errors that you must correct.": ""
+  "There are fields with errors that you must correct.": "",
+  "Email required": "",
+  "Password required": ""
 }

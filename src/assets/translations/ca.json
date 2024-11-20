@@ -36,5 +36,7 @@
   "Profile data updated": "Les dades del perfil s'han actualitzat",
   "An error has occurred updating the profile data": "S'ha produït un error en actualitzar les dades del perfil",
   "Minimum 8 alphanumeric characters. The two passwords must match": "Mínim 8 caràcters alfanumèrics. Les dues contrasenyes han de coincidir",
-  "There are fields with errors that you must correct.": "Hi ha camps amb errors que has de corregir."
+  "There are fields with errors that you must correct.": "Hi ha camps amb errors que has de corregir.",
+  "Email required": "Correu electrònic requerit",
+  "Password required": "Contrasenya requerida"
 }

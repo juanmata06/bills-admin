@@ -36,5 +36,7 @@
   "Profile data updated": "Datos de perfil actualizado",
   "An error has occurred updating the profile data": "ha ocurrido un error actualizando los datos de perfil",
   "Minimum 8 alphanumeric characters. The two passwords must match": "Mínimo 8 caracteres alfanuméricos. Las dos contraseñas deben coincidir.",
-  "There are fields with errors that you must correct.": "Hay campos con errores que debes corregir."
+  "There are fields with errors that you must correct.": "Hay campos con errores que debes corregir.",
+  "Email required": "Correo electrónico requerido",
+  "Password required": "Contraseña requerida"
 }
